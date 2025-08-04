@@ -14,4 +14,5 @@ export const menuItems = [
     },
 
     { label: 'Orders', path: '/orders' },
+    { label: 'Orders2', path: '/orders2' },
 ];
