@@ -1,0 +1,30 @@
+.custom-item-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+    background-color: white;
+  }
+  
+  .custom-item-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+  
+  .custom-item-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 8px;
+    border-radius: 6px;
+  }
+  
+  .custom-item-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+  }
+  

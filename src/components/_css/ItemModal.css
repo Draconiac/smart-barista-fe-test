@@ -1,0 +1,16 @@
+.modal-content {
+  position: fixed; /* absolute değil fixed olmalı ki viewport’a göre konumlansın */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -130%);
+  width: 30vw;    /* genişlik: ekranın %30'u */
+  max-width: 500px; /* maksimum genişlik */
+  height: 65vh;   /* yüksekliğin %65'ı */
+  max-height: 600px; /* maksimum yükseklik */
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  overflow: auto;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
