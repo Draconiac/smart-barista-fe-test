@@ -1,10 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import Home from './pages/Home';
-import Overview from './pages/Overview';
-import Stats from './pages/Stats';
-import Orders from './pages/Orders';
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import Home from "./pages/Home";
+import Orders from "./pages/Orders";
+import TableAndAreas from "./pages/TableAndAreas/TableAndAreas";
 
 function App() {
   return (
@@ -13,10 +11,9 @@ function App() {
         <Sidebar />
         <div className="p-3 flex-grow-1">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/dashboard/overview" element={<Overview />} />
-            <Route path="/dashboard/stats" element={<Stats />} />
-            <Route path="/orders" element={<Orders />} />
+            <Route path="/" element={<Home />} />  
+            <Route path="/tanimlamalar/masabolgeler" element={<TableAndAreas />} />
+            <Route path="/siparis" element={<Orders />} />
           </Routes>
         </div>
       </div>

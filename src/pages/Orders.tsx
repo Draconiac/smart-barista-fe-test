@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import Item from '../components/Item';
 import ItemModal from '../components/ItemModal';
+import coffeeImage from '../assets/coffee.jpeg';
 
 Modal.setAppElement('#root');
 
@@ -29,18 +30,18 @@ const Orders = () => {
             <h2>📦 Orders Page</h2>
             <Item
                 title="Coffee"
-                imageSrc="/images/coffee.jpeg"
-                onClick={() => openModal({ title: 'Coffee', imageSrc: '/images/coffee.jpeg' })}
+                imageSrc={coffeeImage}
+                onClick={() => openModal({ title: 'Coffee', imageSrc: coffeeImage })}
             />
             <Item
                 title="Tea"
-                imageSrc="/images/coffee.jpeg"
-                onClick={() => openModal({ title: 'Tea', imageSrc: '/images/coffee.jpeg' })}
+                imageSrc="/assets/coffee.jpeg"
+                onClick={() => openModal({ title: 'Tea', imageSrc: './assets/coffee.jpeg' })}
             />
             <Item
                 title="Dessert"
-                imageSrc="/images/coffee.jpeg"
-                onClick={() => openModal({ title: 'Dessert', imageSrc: '/images/coffee.jpeg' })}
+                imageSrc="/assets/coffee.jpeg"
+                onClick={() => openModal({ title: 'Dessert', imageSrc: '/assets/coffee.jpeg' })}
             />
 
             <ItemModal
