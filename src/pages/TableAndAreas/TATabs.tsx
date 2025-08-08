@@ -1,7 +1,7 @@
 export default function TATabs() {
   return (
-    <div className="d-flex flex-column">
-      <button className="btn btn-primary mb-2">Add Table</button>
+    <div className="d-flex">
+      {/*<h5>Alan eklendikce buarada yeni sekmeler acılacak</h5>*/}
     </div>
   );
 }

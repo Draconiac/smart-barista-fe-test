@@ -1,5 +1,5 @@
 import React from 'react';
-import './_css/Item.css';
+import './css/Item.css';
 
 interface ItemProps{
   title: string;
