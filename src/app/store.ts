@@ -1,15 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit'
 import postsReducer from '../features/posts/postsSlice'
-import dotsReducer from '../features/dots/dotsSlice'
+import testReducer from '../features/testSlice'
 import modalReducer from '../features/modalSlice'
+import tableReducer from '../features/tableSlice'
 
 export const store = configureStore({
   reducer: {
     //tests
     posts: postsReducer,
-    dots : dotsReducer,
+    test : testReducer,
     //real
     modal: modalReducer,
+    table: tableReducer,
   }
 })
 

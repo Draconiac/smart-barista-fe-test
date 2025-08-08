@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import TAButtons from "./TAButtons";
-import TATabs from "./TATabs";
 import { useTranslation } from "react-i18next";
-import TAView from "./TAView";
+import { useAppSelector } from "../../app/hooks";
+import TAButtons from "./TAButtons";
 import TAModal from "./TAModal";
-import { useAppSelector } from '../../app/hooks'
+import TATabs from "./TATabs";
+import TAView from "./TAView";
 
 export default function TableAndAreas() {
   const { t } = useTranslation("navbar");
-  const modalIsOpen = useAppSelector(state => state.modal.isOpen);
-  const content = useAppSelector(state => state.modal.content);
+  const modalIsOpen = useAppSelector((state) => state.modal.isOpen);
+  const [selectedAreaTab, setSelectedAreaTab] = useState("");
+  const [selectedButton, setSelectedButton] = useState({
+    title: "",
+    componentName: "",
+  });
 
   const containerStyle: React.CSSProperties = {
     display: "flex",
@@ -28,7 +32,9 @@ export default function TableAndAreas() {
   };
 
   const div2Style: React.CSSProperties = {
-    flex: "1",
+    flex: ".5",
+    justifyContent: "flex-start",
+    alignItems: "center",
     border: "1px solid black",
     boxSizing: "border-box",
     margin: "2px",
@@ -43,20 +49,27 @@ export default function TableAndAreas() {
     backgroundColor: "#dbdae3ff",
   };
 
-
   return (
-
     <div style={containerStyle}>
       <h4 className="text-left">{t("tableandareas")}</h4>
-      <div style={div1Style}><TAButtons/></div>
-      <div style={div2Style}><TATabs/></div>
-      <div style={div3Style}><TAView /></div>
-
+      <div style={div1Style}>
+        <TAButtons
+          selectedAreaTab={selectedAreaTab}
+          setSelectedButton={setSelectedButton}
+        />
+      </div>
+      <div style={div2Style}>
+        <TATabs setSelectedAreaTab={setSelectedAreaTab} />
+      </div>
+      <div style={div3Style}>
+        <TAView />
+      </div>
       <TAModal
+        title={selectedButton.title}
         isOpen={modalIsOpen}
-        content={content}
+        componentName={selectedButton.componentName}
+        data={{ selectedAreaTab: selectedAreaTab }}
       />
     </div>
-
   );
 }

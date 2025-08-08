@@ -171,19 +171,19 @@ const Sidebar = () => {
             onChange={handleLanguageChange}
           >
             <option value="tr">
-              <img
+              {/* <img
                 src={trFlag}
                 alt="Türkçe"
                 style={{ marginRight: "5px", verticalAlign: "middle" }}
-              />
+              /> */}
               Türkçe
             </option>
             <option value="en">
-              <img
+              {/* <img
                 src={enFlag}
                 alt="English"
                 style={{ marginRight: "5px", verticalAlign: "middle" }}
-              />
+              /> */}
               English
             </option>
           </select>

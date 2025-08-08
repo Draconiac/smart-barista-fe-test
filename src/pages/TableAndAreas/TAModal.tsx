@@ -3,17 +3,26 @@ import Modal from "react-modal";
 import "../../components/css/Modal.css";
 import { useAppDispatch } from "../../app/hooks";
 import { closeModal } from "../../features/modalSlice";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import { useTranslation } from "react-i18next";
+import { taModalMap } from "./modals/TAModalExport";
+
 
 Modal.setAppElement("#root");
 
 interface TAModalProps {
   isOpen: boolean;
-  content: React.ReactNode | null;
+  componentName: string;
+  title: string;
+  data?: Record<string, unknown>;
 }
 
-const ItemModal: React.FC<TAModalProps> = ({ isOpen, content }) => {
+const ItemModal: React.FC<TAModalProps> = ({ title, isOpen, componentName, data }) => {
   const dispatch = useAppDispatch();
   const onClose = () => dispatch(closeModal());
+  const { t } = useTranslation("navbar_tableandareas");
+  const Comp = taModalMap.get(componentName);
 
   return (
     <Modal
@@ -51,24 +60,9 @@ const ItemModal: React.FC<TAModalProps> = ({ isOpen, content }) => {
     >
       {
         <>
-          <form>
-            <div>
-              <label htmlFor="customerName">Customer Name:</label>
-              <br />
-              <input
-                type="text"
-                id="customerName"
-                name="customerName"
-                required
-              />
-            </div>
-
-            <button type="submit">Submit</button>
-          </form>
-          {content}
-          <button onClick={onClose} className="modal-close-button">
-            Kapat
-          </button>
+          <Header title={t(title)} />
+          {Comp ? <Comp data={data}/> : <p>Modal bulunamadı</p>}
+          <Footer onClose={onClose} />
         </>
       }
     </Modal>

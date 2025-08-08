@@ -1,17 +1,22 @@
 import { useTranslation } from "react-i18next";
-import { useAppSelector, useAppDispatch } from '../../app/hooks'
-import { openModal, closeModal } from '../../features/modalSlice';
-import ReduxTestPage from "../../features/posts/ReduxTestPage";
-import Orders from "../Orders";
+import { useAppDispatch } from "../../app/hooks";
+import { closeModal, openModal } from "../../features/modalSlice";
+import { defineTable } from "../../features/tableSlice"
 
-export default function TAButtons() {
+const TAButtons = ({
+  selectedAreaTab,
+  setSelectedButton,
+}: {
+  selectedAreaTab: string;
+  setSelectedButton: (val: { title: string; componentName: string }) => void;
+}) => {
   const { t } = useTranslation("navbar_tableandareas");
   const dispatch = useAppDispatch();
-  const content = <div><Orders/></div>; // Example content for the modal
-
+  
   const handleAddNewArea = () => {
     console.log("Add new area clicked");
-    dispatch(openModal(content));
+    setSelectedButton({ title: "addNewArea", componentName: "TAAddNewArea" });
+    dispatch(openModal());
   };
 
   const handleEditArea = () => {
@@ -19,15 +24,14 @@ export default function TAButtons() {
   };
 
   const handleAddNewTable = () => {
-    console.log("Add new table clicked");
+    setSelectedButton({ title: "addNewTable", componentName: "TAAddNewTable" });
+    dispatch(openModal());
   };
 
   const handleAddNewTableBulk = () => {
     console.log("Add new tables in bulk clicked");
-  };
-
-  const handleNewTable = () => {
-    console.log("New table clicked");
+    setSelectedButton({ title: "addNewTableBulk", componentName: "TAAddNewTableBulk" });
+    dispatch(openModal());
   };
 
   return (
@@ -38,9 +42,14 @@ export default function TAButtons() {
       <button className="btn btn-primary mb-2" onClick={handleEditArea}>
         {t("editArea")}
       </button>
-      <button className="btn btn-primary mb-2">{t("addNewTable")}</button>
-      <button className="btn btn-primary mb-2">{t("addNewTableBulk")}</button>
-      <button className="btn btn-primary mb-2">{t("newTable")}</button>
+      <button className="btn btn-primary mb-2" onClick={handleAddNewTable}>
+        {t("addNewTable")}
+      </button>
+      <button className="btn btn-primary mb-2" onClick={handleAddNewTableBulk}>
+        {t("addNewTableBulk")}
+      </button>
     </div>
   );
-}
+};
+
+export default TAButtons;
