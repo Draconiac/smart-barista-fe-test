@@ -1,27 +1,53 @@
-import { useAppSelector } from "../../app/hooks";
+import { useEffect, useMemo, useState } from "react";
+import axios from "axios";
+import TableCard from "./modals/TableCard";
 
-const TAView = () => {
-  const tables = useAppSelector((state) => state.table.tables);
+export interface TableType {
+  id: number;
+  areaId: number;
+  title: string;
+  isActive: boolean;
+}
 
-  const asd = () =>{
-      console.log({"tables": tables})
-    }
+const TAView = ({ selectedAreaTab }: { selectedAreaTab: number }) => {
+  const [tables, setTables] = useState<TableType[]>([]);
 
-    const map = new Map(Object.entries(tables));
+  useEffect(() => {
+    axios
+      .get<TableType[]>("/api/blabla")
+      .then((response) => {
+        setTables(response.data);
+      })
+      .catch((error) => {
+        console.error("Veri çekilirken hata oluştu:", error);
+      });
+  }, []);
+
+  // tables verisini areaId'ye göre grupla
+  const tableMap = useMemo(() => groupTablesByArea(tables), [tables]);
 
   return (
-
-  
-  <div>
-      <button onClick={() => {asd()}}>AA</button>
-      {
-        
-          map.get("Salon")?.map((i) => (
-            <button>{i}</button>
-          ))
-
-      }
-  </div>);
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+      {tableMap.get(selectedAreaTab)?.map((table) => (
+        <div key={table.id}>
+          <TableCard
+            title={table.title}
+            onButtonClick={() => alert(`Edit ${table.title}`)}
+          />
+        </div>
+      ))}
+    </div>
+  );
 };
+
+function groupTablesByArea(tables: TableType[]): Map<number, TableType[]> {
+  return tables.reduce((map, table) => {
+    if (!map.has(table.areaId)) {
+      map.set(table.areaId, []);
+    }
+    map.get(table.areaId)!.push(table);
+    return map;
+  }, new Map<number, TableType[]>());
+}
 
 export default TAView;

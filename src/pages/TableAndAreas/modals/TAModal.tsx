@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
-import "../../components/css/Modal.css";
-import { useAppDispatch } from "../../app/hooks";
-import { closeModal } from "../../features/modalSlice";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import "../../../components/css/Modal.css";
+import { useAppDispatch } from "../../../app/hooks";
+import { closeModal } from "../../../features/modalSlice";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
 import { useTranslation } from "react-i18next";
-import { taModalMap } from "./modals/TAModalExport";
+import { taModalMap } from "./TAModalExport";
 
 
 Modal.setAppElement("#root");
@@ -18,7 +18,7 @@ interface TAModalProps {
   data?: Record<string, unknown>;
 }
 
-const ItemModal: React.FC<TAModalProps> = ({ title, isOpen, componentName, data }) => {
+const TaModal: React.FC<TAModalProps> = ({ title, isOpen, componentName, data }) => {
   const dispatch = useAppDispatch();
   const onClose = () => dispatch(closeModal());
   const { t } = useTranslation("navbar_tableandareas");
@@ -69,4 +69,4 @@ const ItemModal: React.FC<TAModalProps> = ({ title, isOpen, componentName, data 
   );
 };
 
-export default ItemModal;
+export default TaModal;

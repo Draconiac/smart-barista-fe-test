@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../app/hooks";
 import TAButtons from "./TAButtons";
-import TAModal from "./TAModal";
+import TAModal from "./modals/TAModal";
 import TATabs from "./TATabs";
 import TAView from "./TAView";
 
@@ -62,7 +62,7 @@ export default function TableAndAreas() {
         <TATabs setSelectedAreaTab={setSelectedAreaTab} />
       </div>
       <div style={div3Style}>
-        <TAView />
+        <TAView selectedAreaTab={selectedAreaTab}/>
       </div>
       <TAModal
         title={selectedButton.title}

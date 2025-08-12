@@ -21,10 +21,6 @@ const TATabs = ({
       : { backgroundColor: "green" };
   };
 
-  useEffect(() => {
-    console.log(selectedTab);
-  }, [selectedTab]);
-
   return (
     <div style={{ display: "flex" }}>
       {tabs.map((area) => (

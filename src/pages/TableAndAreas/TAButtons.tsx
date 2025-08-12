@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useAppDispatch } from "../../app/hooks";
 import { closeModal, openModal } from "../../features/modalSlice";
-import { defineTable } from "../../features/tableSlice"
 
 const TAButtons = ({
   selectedAreaTab,
@@ -14,7 +13,6 @@ const TAButtons = ({
   const dispatch = useAppDispatch();
   
   const handleAddNewArea = () => {
-    console.log("Add new area clicked");
     setSelectedButton({ title: "addNewArea", componentName: "TAAddNewArea" });
     dispatch(openModal());
   };
@@ -29,7 +27,6 @@ const TAButtons = ({
   };
 
   const handleAddNewTableBulk = () => {
-    console.log("Add new tables in bulk clicked");
     setSelectedButton({ title: "addNewTableBulk", componentName: "TAAddNewTableBulk" });
     dispatch(openModal());
   };
@@ -42,10 +39,10 @@ const TAButtons = ({
       <button className="btn btn-primary mb-2" onClick={handleEditArea}>
         {t("editArea")}
       </button>
-      <button className="btn btn-primary mb-2" onClick={handleAddNewTable}>
+      <button className="btn btn-primary mb-2" disabled={selectedAreaTab === ""} onClick={handleAddNewTable}>
         {t("addNewTable")}
       </button>
-      <button className="btn btn-primary mb-2" onClick={handleAddNewTableBulk}>
+      <button className="btn btn-primary mb-2" disabled={selectedAreaTab === ""} onClick={handleAddNewTableBulk}>
         {t("addNewTableBulk")}
       </button>
     </div>
