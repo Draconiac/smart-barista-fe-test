@@ -8,7 +8,6 @@ import Footer from "../../../components/Footer";
 import { useTranslation } from "react-i18next";
 import { taModalMap } from "./TAModalExport";
 
-
 Modal.setAppElement("#root");
 
 interface TAModalProps {
@@ -18,7 +17,12 @@ interface TAModalProps {
   data?: Record<string, unknown>;
 }
 
-const TaModal: React.FC<TAModalProps> = ({ title, isOpen, componentName, data }) => {
+const TaModal: React.FC<TAModalProps> = ({
+  title,
+  isOpen,
+  componentName,
+  data,
+}) => {
   const dispatch = useAppDispatch();
   const onClose = () => dispatch(closeModal());
   const { t } = useTranslation("navbar_tableandareas");
@@ -61,7 +65,7 @@ const TaModal: React.FC<TAModalProps> = ({ title, isOpen, componentName, data })
       {
         <>
           <Header title={t(title)} />
-          {Comp ? <Comp data={data}/> : <p>Modal bulunamadı</p>}
+          {Comp ? <Comp data={data} /> : <p>Modal bulunamadı</p>}
           <Footer onClose={onClose} />
         </>
       }

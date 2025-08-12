@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useAppDispatch } from "../../app/hooks";
-import { closeModal, openModal } from "../../features/modalSlice";
+import { openModal } from "../../features/modalSlice";
 
 const TAButtons = ({
   selectedAreaTab,
@@ -11,14 +11,27 @@ const TAButtons = ({
 }) => {
   const { t } = useTranslation("navbar_tableandareas");
   const dispatch = useAppDispatch();
-  
+
+  interface EditButtonType {
+    isEdit: boolean;
+    title: string;
+    componentName: string;
+    data: any;
+  }
+
   const handleAddNewArea = () => {
     setSelectedButton({ title: "addNewArea", componentName: "TAAddNewArea" });
     dispatch(openModal());
   };
 
   const handleEditArea = () => {
-    dispatch(closeModal());
+    let editData = {
+      title: "editArea",
+      componentName: "TAEditArea",
+      selectedAreaTab: selectedAreaTab
+    };
+    setSelectedButton(editData);
+    dispatch(openModal());
   };
 
   const handleAddNewTable = () => {
@@ -27,7 +40,10 @@ const TAButtons = ({
   };
 
   const handleAddNewTableBulk = () => {
-    setSelectedButton({ title: "addNewTableBulk", componentName: "TAAddNewTableBulk" });
+    setSelectedButton({
+      title: "addNewTableBulk",
+      componentName: "TAAddNewTableBulk",
+    });
     dispatch(openModal());
   };
 
@@ -36,13 +52,25 @@ const TAButtons = ({
       <button className="btn btn-primary mb-2" onClick={handleAddNewArea}>
         {t("addNewArea")}
       </button>
-      <button className="btn btn-primary mb-2" onClick={handleEditArea}>
+      <button
+        className="btn btn-primary mb-2"
+        disabled={selectedAreaTab === ""}
+        onClick={handleEditArea}
+      >
         {t("editArea")}
       </button>
-      <button className="btn btn-primary mb-2" disabled={selectedAreaTab === ""} onClick={handleAddNewTable}>
+      <button
+        className="btn btn-primary mb-2"
+        disabled={selectedAreaTab === ""}
+        onClick={handleAddNewTable}
+      >
         {t("addNewTable")}
       </button>
-      <button className="btn btn-primary mb-2" disabled={selectedAreaTab === ""} onClick={handleAddNewTableBulk}>
+      <button
+        className="btn btn-primary mb-2"
+        disabled={selectedAreaTab === ""}
+        onClick={handleAddNewTableBulk}
+      >
         {t("addNewTableBulk")}
       </button>
     </div>

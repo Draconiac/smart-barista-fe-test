@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import api from "../../../api";
 
-const TAAddNewArea: React.FC<{ data: Record<string, unknown> }> = () => {
+const TAEditArea: React.FC<{ data: Record<string, unknown> }> = () => {
   const { t } = useTranslation("navbar_tableandareas");
   const [inputValue, setInputValue] = useState<string>("");
 
@@ -19,7 +19,7 @@ const TAAddNewArea: React.FC<{ data: Record<string, unknown> }> = () => {
     };
 
     api
-      .post<AreaType>("areas", data)
+      .put<AreaType>("areas/"+`${inputValue}`, data)
       .then(() => console.info("Kayıt işlemi başarılı"))
       .catch((error) => console.log("Kayıt işlemi başarısız oldu" + error));
 
@@ -43,4 +43,4 @@ const TAAddNewArea: React.FC<{ data: Record<string, unknown> }> = () => {
   );
 };
 
-export default TAAddNewArea;
+export default TAEditArea;

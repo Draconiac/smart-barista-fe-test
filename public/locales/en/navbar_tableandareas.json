@@ -4,5 +4,7 @@
   "addNewTable": "Add New Table",
   "addNewTableBulk": "Add New Table in Bulk",
   "addNewTableBulkSize": "Table Size",
-  "newTable": "New Table"
+  "newTable": "New Table",
+  "tableName": "Table Name",
+  "areaName": "Area Name"
 }

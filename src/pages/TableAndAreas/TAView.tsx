@@ -1,21 +1,22 @@
 import { useEffect, useMemo, useState } from "react";
-import axios from "axios";
 import TableCard from "./modals/TableCard";
+import api from "../../api";
 
 export interface TableType {
-  id: number;
-  areaId: number;
-  title: string;
+  id: string;
+  areaId: string;
+  name: string;
   isActive: boolean;
 }
 
-const TAView = ({ selectedAreaTab }: { selectedAreaTab: number }) => {
+const TAView = ({ selectedAreaTab }: { selectedAreaTab: string }) => {
   const [tables, setTables] = useState<TableType[]>([]);
 
   useEffect(() => {
-    axios
-      .get<TableType[]>("/api/blabla")
+    api
+      .get<TableType[]>("/tables")
       .then((response) => {
+        console.log(response.data);
         setTables(response.data);
       })
       .catch((error) => {
@@ -31,8 +32,10 @@ const TAView = ({ selectedAreaTab }: { selectedAreaTab: number }) => {
       {tableMap.get(selectedAreaTab)?.map((table) => (
         <div key={table.id}>
           <TableCard
-            title={table.title}
-            onButtonClick={() => alert(`Edit ${table.title}`)}
+            id={table.id}
+            name={table.name}
+            isActive={table.isActive}
+            onButtonClick={() => alert(`Edit ${table.name}`)}
           />
         </div>
       ))}
@@ -40,14 +43,14 @@ const TAView = ({ selectedAreaTab }: { selectedAreaTab: number }) => {
   );
 };
 
-function groupTablesByArea(tables: TableType[]): Map<number, TableType[]> {
+function groupTablesByArea(tables: TableType[]): Map<string, TableType[]> {
   return tables.reduce((map, table) => {
     if (!map.has(table.areaId)) {
       map.set(table.areaId, []);
     }
     map.get(table.areaId)!.push(table);
     return map;
-  }, new Map<number, TableType[]>());
+  }, new Map<string, TableType[]>());
 }
 
 export default TAView;
