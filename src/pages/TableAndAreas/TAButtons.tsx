@@ -3,21 +3,14 @@ import { useAppDispatch } from "../../app/hooks";
 import { openModal } from "../../features/modalSlice";
 
 const TAButtons = ({
-  selectedAreaTab,
+  selectedTab,
   setSelectedButton,
 }: {
-  selectedAreaTab: string;
+  selectedTab: {id: string, name: string};
   setSelectedButton: (val: { title: string; componentName: string }) => void;
 }) => {
   const { t } = useTranslation("navbar_tableandareas");
   const dispatch = useAppDispatch();
-
-  interface EditButtonType {
-    isEdit: boolean;
-    title: string;
-    componentName: string;
-    data: any;
-  }
 
   const handleAddNewArea = () => {
     setSelectedButton({ title: "addNewArea", componentName: "TAAddNewArea" });
@@ -28,7 +21,7 @@ const TAButtons = ({
     let editData = {
       title: "editArea",
       componentName: "TAEditArea",
-      selectedAreaTab: selectedAreaTab
+      selectedTab: selectedTab
     };
     setSelectedButton(editData);
     dispatch(openModal());
@@ -54,21 +47,21 @@ const TAButtons = ({
       </button>
       <button
         className="btn btn-primary mb-2"
-        disabled={selectedAreaTab === ""}
+        disabled={selectedTab.id === ""}
         onClick={handleEditArea}
       >
         {t("editArea")}
       </button>
       <button
         className="btn btn-primary mb-2"
-        disabled={selectedAreaTab === ""}
+        disabled={selectedTab.id === ""}
         onClick={handleAddNewTable}
       >
         {t("addNewTable")}
       </button>
       <button
         className="btn btn-primary mb-2"
-        disabled={selectedAreaTab === ""}
+        disabled={selectedTab.id === ""}
         onClick={handleAddNewTableBulk}
       >
         {t("addNewTableBulk")}

@@ -1,24 +1,52 @@
+import { nanoid } from "nanoid";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useAppDispatch } from "../../../app/hooks";
-import { defineTable } from "../../../features/tableSlice";
+import api from "../../../api";
 
-const TAAddNewTable: React.FC<{ data: Record<string, unknown> }> = (props) => {
+interface TAAddNewTableProps {
+  selectedTab: { id: string; name: string };
+  getTables: () => void;
+  closeModal: () => void;
+}
+
+const TAAddNewTable: React.FC<TAAddNewTableProps> = ({ selectedTab, getTables, closeModal }) => {
   const { t } = useTranslation("navbar_tableandareas");
-  const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState<string>("");
-  const areaName = props.data ? props.data?.selectedAreaTab : "";
 
-  const addNewTable = () => {
-    let tmp: string[] = [inputValue];
-    dispatch(defineTable({ areaName: String(areaName), tableName: tmp }));
+  interface TableType {
+    id: string;
+    areaId: string;
+    name: string;
+    isActive: boolean;
+  }
+
+  const saveTable = () => {
+    
+    const data = {
+      id: nanoid(),
+      areaId: selectedTab.id,
+      name: inputValue,
+      isActive: false,
+    };
+
+    api
+      .post<TableType>("tables/", data)
+      .then(() => {
+        if (getTables) getTables();
+        console.info("Kayıt işlemi başarılı");
+      })
+      .catch((error) => console.log("Kayıt işlemi başarısız oldu" + error));
+
+    setInputValue("");
+    closeModal();
   };
 
   return (
-    <div
-      style={{ padding: "1vh", display: "flex", justifyContent: "flex-start" }}
-    >
+    <div style={{ padding: "1vh", display: "flex" }}>
       <div>
+        <div>
+          <h5>{selectedTab.name} tab için yeni masa ekleniyor</h5>
+        </div>
         <label>{t("addNewTable")}:</label>
         <input
           type="text"
@@ -27,11 +55,10 @@ const TAAddNewTable: React.FC<{ data: Record<string, unknown> }> = (props) => {
             setInputValue(e.target.value);
           }}
         />
-      </div>
-      <div>
+
         <button
           onClick={() => {
-            addNewTable();
+            saveTable();
           }}
         >
           Ekle

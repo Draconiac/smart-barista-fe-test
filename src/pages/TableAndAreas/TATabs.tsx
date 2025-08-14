@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import api from "../../api";
 
 export interface AreaType {
   id: string;
@@ -7,32 +6,29 @@ export interface AreaType {
 }
 
 const TATabs = ({
-  setSelectedAreaTab,
+  setSelectedTab,
+  areas,
+  getTables,
 }: {
-  setSelectedAreaTab: (val: string) => void;
+  setSelectedTab: React.Dispatch<
+    React.SetStateAction<{ id: string; name: string }>
+  >;
+  areas: AreaType[];
+  getTables: () => void;
 }) => {
-  const [areas, setAreas] = useState<AreaType[]>([]);
-  const [selectedTab, setSelectedTab] = useState("");
+  const [selectedTabId, setSelectedTabId] = useState("");
 
-  const areaButtonClicked = (id: string) => {
-    setSelectedTab(id);
-    setSelectedAreaTab(id);
+  const areaButtonClicked = (area: { id: string; name: string }) => {
+    setSelectedTabId(area.id);
+    setSelectedTab(area);
   };
 
   useEffect(() => {
-    api
-      .get<AreaType[]>("/areas")
-      .then((response) => {
-        console.log(response.data);
-        setAreas(response.data);
-      })
-      .catch((error) => {
-        console.error("Veri çekilirken hata oluştu:", error);
-      });
-  }, []);
+    getTables();
+  }, [selectedTabId]);
 
   const showSelectedTab = (areaId: string): React.CSSProperties => {
-    return selectedTab === areaId
+    return selectedTabId === areaId
       ? { backgroundColor: "red" }
       : { backgroundColor: "green" };
   };
@@ -44,7 +40,7 @@ const TATabs = ({
           <button
             style={showSelectedTab(area.id)}
             onClick={() => {
-              areaButtonClicked(area.id);
+              areaButtonClicked(area);
             }}
           >
             {area.name}

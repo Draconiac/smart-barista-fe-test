@@ -1,13 +1,18 @@
 import { nanoid } from "nanoid";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import api from "../../../api";
 
-const TAAddNewArea: React.FC<{ data: Record<string, unknown> }> = () => {
+interface TAAddNewAreaProps {
+  getTabs: () => void;
+  closeModal: () => void;
+}
+
+const TAAddNewArea: React.FC<TAAddNewAreaProps>= ({getTabs , closeModal}) => {
   const { t } = useTranslation("navbar_tableandareas");
   const [inputValue, setInputValue] = useState<string>("");
 
-  interface AreaType {
+  interface AreaType { 
     id: string;
     name: string;
   }
@@ -20,10 +25,14 @@ const TAAddNewArea: React.FC<{ data: Record<string, unknown> }> = () => {
 
     api
       .post<AreaType>("areas", data)
-      .then(() => console.info("Kayıt işlemi başarılı"))
+      .then(() => {
+        console.info("Kayıt işlemi başarılı");
+        getTabs();
+      })
       .catch((error) => console.log("Kayıt işlemi başarısız oldu" + error));
 
     setInputValue("");
+    closeModal();
   };
 
   return (

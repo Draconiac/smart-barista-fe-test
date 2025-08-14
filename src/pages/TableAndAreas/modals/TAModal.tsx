@@ -1,36 +1,33 @@
-import React, { Component } from "react";
-import Modal from "react-modal";
-import "../../../components/css/Modal.css";
-import { useAppDispatch } from "../../../app/hooks";
-import { closeModal } from "../../../features/modalSlice";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
 import { useTranslation } from "react-i18next";
+import Modal from "react-modal";
+import { useAppDispatch } from "../../../app/hooks";
+import "../../../components/css/Modal.css";
+import Footer from "../../../components/Footer";
+import Header from "../../../components/Header";
+import { closeModal } from "../../../features/modalSlice";
 import { taModalMap } from "./TAModalExport";
 
 Modal.setAppElement("#root");
 
-interface TAModalProps {
+interface TAModalProps<T> {
   isOpen: boolean;
   componentName: string;
   title: string;
-  data?: Record<string, unknown>;
+  data?: T;
+  getTabs?: () => void;
+  getTables?: () => void;
+  closeModal?: () => void;
 }
 
-const TaModal: React.FC<TAModalProps> = ({
-  title,
-  isOpen,
-  componentName,
-  data,
-}) => {
+const TaModal = <T extends {}>(props: TAModalProps<T>) => {
   const dispatch = useAppDispatch();
   const onClose = () => dispatch(closeModal());
   const { t } = useTranslation("navbar_tableandareas");
-  const Comp = taModalMap.get(componentName);
+  const Comp = taModalMap.get(props.componentName);
 
   return (
     <Modal
-      isOpen={isOpen}
+      isOpen={props.isOpen}
       onRequestClose={onClose}
       contentLabel={"Content Label Detail"}
       className="modal-content"
@@ -64,8 +61,17 @@ const TaModal: React.FC<TAModalProps> = ({
     >
       {
         <>
-          <Header title={t(title)} />
-          {Comp ? <Comp data={data} /> : <p>Modal bulunamadı</p>}
+          <Header title={t(props.title)} />
+          {Comp ? (
+            <Comp
+              {...props.data}
+              getTabs={props.getTabs}
+              getTables={props.getTables}
+              closeModal={props.closeModal}
+            />
+          ) : (
+            <p>Modal bulunamadı</p>
+          )}
           <Footer onClose={onClose} />
         </>
       }
