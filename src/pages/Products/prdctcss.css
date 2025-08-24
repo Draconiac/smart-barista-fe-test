@@ -1,0 +1,24 @@
+.main-frame {
+  margin: 2px;
+  padding: 2px;
+  background-color: gainsboro;
+}
+
+.form-row {
+  display: flex;
+  align-items: center; /* Dikeyde ortalar */
+  margin-bottom: 10px; /* Elemanlar arasına boşluk ekler */
+}
+
+.form-row label {
+  width: 150px; /* Label'lara sabit bir genişlik ver */
+  flex-shrink: 0; /* Küçülmesini engelle */
+}
+
+.form-row input {
+  width: 200px;
+}
+
+.ing-frame{
+  display: flex; /* Flexbox'u etkinleştirir */
+}

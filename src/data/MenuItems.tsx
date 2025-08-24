@@ -24,14 +24,14 @@ export const menuItems = [
         iconPath: homeIcon,
       },
       {
+        label: "stocks",
+        path: "/tanimlamalar/stok",
+        iconPath: homeIcon,
+      },
+      {
         label: "discounts",
         path: "/tanimlamalar/indirimler",
         iconPath: discountIcon,
-      },
-      {
-        label: "features",
-        path: "/tanimlamalar/ozellikler",
-        iconPath: homeIcon,
       },
     ],
   },

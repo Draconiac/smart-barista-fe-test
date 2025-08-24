@@ -13,7 +13,7 @@ export const div1Style: CSSProperties = {
   border: "1px solid black",
   boxSizing: "border-box",
   margin: "2px",
-  backgroundColor: "#dbdae3ff",
+  backgroundColor: "gainsboro",
 };
 
 export const div2Style: CSSProperties = {
@@ -23,7 +23,7 @@ export const div2Style: CSSProperties = {
   border: "1px solid black",
   boxSizing: "border-box",
   margin: "2px",
-  backgroundColor: "#dbdae3ff",
+  backgroundColor: "gainsboro",
 };
 
 export const div3Style: CSSProperties = {
@@ -31,5 +31,5 @@ export const div3Style: CSSProperties = {
   border: "1px solid black",
   boxSizing: "border-box",
   margin: "2px",
-  backgroundColor: "#f0eff7ff",
+  backgroundColor: "gainsboro",
 };

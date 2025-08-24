@@ -3,6 +3,8 @@ import Sidebar from "./components/Sidebar";
 import Home from "./pages/Home";
 import Orders from "./pages/Orders";
 import TableAndAreas from "./pages/TableAndAreas/TableAndAreas";
+import Product from "./pages/Products/Product";
+import Stock from "./pages/Products/Stock";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
             <Route path="/" element={<Home />} />  
             <Route path="/tanimlamalar/masabolgeler" element={<TableAndAreas />} />
             <Route path="/siparis" element={<Orders />} />
+            <Route path="/tanimlamalar/menuurunler" element={<Product />} />
+            <Route path="/tanimlamalar/stok" element={<Stock />} />
           </Routes>
         </div>
       </div>
