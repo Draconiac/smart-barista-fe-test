@@ -4,6 +4,7 @@ import GenericTable, { Column } from "../../components/GenericTable";
 import IngredientsItems from "./IngredientsItems";
 import { MinUnits } from "../../enums/GeneralEnums";
 import { Product } from "./Product";
+import { nanoid } from "@reduxjs/toolkit";
 
 interface Ingredients {
   id: string;
@@ -16,10 +17,12 @@ interface Ingredients {
 interface IngredientsProps {
   isVisible: boolean;
   product: Product;
+  ingredients: Ingredients[];
+  getIngredients: ()=> void;
 }
 
 const Ingredients: React.FC<IngredientsProps> = (props: IngredientsProps) => {
-  const { isVisible, product } = props;
+  const { isVisible, product, ingredients, getIngredients } = props;
   const [formData, setFormData] = useState<Ingredients>({
     id: "",
     stockId: "",
@@ -27,8 +30,7 @@ const Ingredients: React.FC<IngredientsProps> = (props: IngredientsProps) => {
     unit: MinUnits.gr,
     productId: product.id,
   });
-  const [ingredients, setIngredients] = useState<Ingredients[]>([]);
-
+  
   // Input değişimlerini yöneten tek bir fonksiyon
   const handleInputChange = (fieldName: "stockId" | "amount" | "unit", value: string) => {
     setFormData((prevData) => ({
@@ -50,6 +52,8 @@ const Ingredients: React.FC<IngredientsProps> = (props: IngredientsProps) => {
 
   const saveIngredient = () => {
     console.log("formData", formData);
+    formData.id = nanoid();
+    formData.productId = product.id;
     api
       .post<Ingredients>("/ingredients", formData)
       .then(() => {
@@ -71,15 +75,15 @@ const Ingredients: React.FC<IngredientsProps> = (props: IngredientsProps) => {
       .catch((error) => console.log("Kayıt işlemi başarısız oldu" + error));
   };
 
-  const getIngredients = () => {
-    api
-      .get<Ingredients[]>("ingredients")
-      .then((response) => {
-        setIngredients(response.data);
-        console.info("Kayıt işlemi başarılı");
-      })
-      .catch((error) => console.log("Kayıt işlemi başarısız oldu" + error));
-  };
+  // const getIngredients = () => {
+  //   api
+  //     .get<Ingredients[]>(`ingredients?productId=${product.id}`)
+  //     .then((response) => {
+  //       setIngredients(response.data);
+  //       console.info("Kayıt işlemi başarılı");
+  //     })
+  //     .catch((error) => console.log("Kayıt işlemi başarısız oldu" + error));
+  // };
 
   // product prop'u her değiştiğinde formData'yı güncelle
   useEffect(() => {
@@ -92,7 +96,7 @@ const Ingredients: React.FC<IngredientsProps> = (props: IngredientsProps) => {
   }, [product]);
 
   useEffect(() => {
-    //getIngredients();
+    getIngredients();
   }, []);
 
   const ingredientColumns: Column<Ingredients>[] = [

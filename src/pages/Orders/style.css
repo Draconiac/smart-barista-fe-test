@@ -1,0 +1,8 @@
+
+
+ .table-items-container {
+  display: flex;
+  flex-wrap: wrap; /* Eğer sığmazsa alt satıra geçmesini sağlar */
+  gap: 10px; /* Elemanlar arasında boşluk bırakır */
+  justify-content: flex-start; /* Elemanları soldan hizalar */
+}

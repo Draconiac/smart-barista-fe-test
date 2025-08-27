@@ -1,16 +1,16 @@
 import React from 'react';
-import './css/Item.css';
+import './style.css';
+import { Product } from '../Products/Product';
 
 interface ItemProps{
   title: string;
-  imageSrc: string;
+  product: Product;
   onClick: () => void;
 }
 
-const Item: React.FC<ItemProps> = ({ title, imageSrc, onClick }) => {
+const Item: React.FC<ItemProps> = ({ title, product, onClick }) => {
   return (
     <div className="custom-item-card" onClick={onClick}>
-      <img src={imageSrc} alt={title} className="custom-item-image" />
       <div className="custom-item-title">{title}</div>
     </div>
   );

@@ -14,3 +14,25 @@
   z-index: 1001;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
+
+.modal-close-button {
+  /* Konumlandırma için modal'ın position: relative olması gerekir */
+  position: absolute;
+  top: 10px;        /* Üstten 10 piksel boşluk bırakır */
+  right: 10px;      /* Sağdan 10 piksel boşluk bırakır */
+  
+  /* Görünüm ayarları */
+  background-color: transparent; /* Arka planı şeffaf yapar */
+  color: #fff;                  /* İçerik rengi (çarpı işareti) */
+  font-size: 24px;              /* Butonun boyutunu ayarlar */
+  font-weight: bold;            /* Yazıyı kalınlaştırır */
+  cursor: pointer;              /* Fare üzerine geldiğinde el işareti gösterir */
+  border: none;                 /* Kenarlığı kaldırır */
+  
+  /* Çarpı işaretini oluşturma */
+  content: 'X';
+  line-height: 0.75;
+  padding: 2px;
+  /* border-radius: 50%; */
+  background-color: #f00; /* Kırmızı renk */
+}

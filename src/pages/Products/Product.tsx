@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import GenericTable, { Column, SpecialColumn } from "../../components/GenericTable";
-import { Category } from "../../enums/GeneralEnums";
+import { Category, MinUnits } from "../../enums/GeneralEnums";
 import api from "../../api";
 import ProductItems from "./ProductItems";
 import Ingredients from "./Ingredients";
@@ -33,6 +33,15 @@ const Product = () => {
     category: Category.DRINK,
     recipe_price: "",
   });
+  const [ingredients, setIngredients] = useState<Ingredients[]>([
+    {
+      id: "",
+      stockId: "",
+      amount: "",
+      unit: MinUnits.gr,
+      productId: formData.id,
+    },
+  ]);
 
   // Input değişimlerini yöneten tek bir fonksiyon
   const handleInputChange = (fieldName: "name" | "price" | "category" | "recipe_price", value: string) => {
@@ -57,7 +66,6 @@ const Product = () => {
     api
       .post<Product>("products", formData)
       .then(() => {
-        console.info("Kayıt işlemi başarılı");
         getProducts(); // Veritabanını güncelle
         handleClear(); // Formu temizle
       })
@@ -68,7 +76,6 @@ const Product = () => {
     api
       .put<Product>(`products/${formData.id}`, formData)
       .then(() => {
-        console.info("Kayıt işlemi başarılı");
         getProducts(); // Veritabanını güncelle
         handleClear(); // Formu temizle
       })
@@ -80,7 +87,6 @@ const Product = () => {
       .get<Product[]>("products")
       .then((response) => {
         setProducts(response.data);
-        console.info("Kayıt işlemi başarılı");
       })
       .catch((error) => console.log("Kayıt işlemi başarısız oldu" + error));
   };
@@ -88,6 +94,10 @@ const Product = () => {
   useEffect(() => {
     getProducts();
   }, []);
+
+  useEffect(() => {
+    getIngredients();
+  }, [ingredientProduct.id]);
 
   const productColumns: Column<Product>[] = [
     { key: "name", label: "Ürün Adı" },
@@ -102,6 +112,7 @@ const Product = () => {
     onButtonClick: (product: Product) => {
       setVisible(true);
       setIngredientProduct(product);
+      
     },
   };
 
@@ -123,6 +134,15 @@ const Product = () => {
     }
   };
 
+  const getIngredients = () => {
+    api
+      .get<Ingredients[]>(`ingredients?productId=${ingredientProduct.id}`)
+      .then((response) => {
+        setIngredients(response.data);
+      })
+      .catch((error) => console.log("Kayıt işlemi başarısız oldu" + error));
+  };
+
   return (
     <div>
       <ProductItems formData={formData} onInputChange={handleInputChange} />
@@ -138,7 +158,12 @@ const Product = () => {
         onEdit={handleEdit}
         onDelete={handleDelete}
       />
-      <Ingredients isVisible={isVisible} product={ingredientProduct} />
+      <Ingredients
+        isVisible={isVisible}
+        product={ingredientProduct}
+        ingredients={ingredients}
+        getIngredients={getIngredients}
+      />
     </div>
   );
 };

@@ -1,0 +1,214 @@
+{
+  "stocks": [
+    {
+      "name": "Kahve",
+      "amount": "20",
+      "cost": "15000",
+      "buy_date": "2025-08-21",
+      "finish_date": "",
+      "used_amount": "",
+      "unit_cost": "0.750",
+      "unit": "KG",
+      "id": "1"
+    },
+    {
+      "name": "Süt",
+      "amount": "80",
+      "cost": "5000",
+      "buy_date": "2025-08-21",
+      "finish_date": "",
+      "used_amount": "",
+      "unit_cost": "0.063",
+      "unit": "LT",
+      "id": "2"
+    },
+    {
+      "name": "Su",
+      "amount": "40",
+      "cost": "2000",
+      "buy_date": "2025-08-21",
+      "finish_date": "",
+      "used_amount": "",
+      "unit_cost": "0.050",
+      "unit": "LT",
+      "id": "3"
+    }
+  ],
+  "products": [
+    {
+      "name": "Espresso",
+      "price": "80",
+      "category": "DRINK",
+      "recipe_price": "",
+      "id": "1"
+    },
+    {
+      "name": "Amerikano",
+      "price": "155",
+      "category": "DRINK",
+      "recipe_price": "",
+      "id": "2"
+    }
+  ],
+  "ingredients": [
+    {
+      "id": "4AfsCJSOX3CJeykGNlYTZ",
+      "stockId": "1",
+      "amount": "18",
+      "unit": "gr",
+      "productId": "1"
+    },
+    {
+      "id": "Enec5Abvyxta9f8v26sZm",
+      "stockId": "1",
+      "amount": "18",
+      "unit": "gr",
+      "productId": "2"
+    },
+    {
+      "id": "GQ0guAdbSnHYTOYgFSWvT",
+      "stockId": "3",
+      "amount": "150",
+      "unit": "ml",
+      "productId": "2"
+    }
+  ],
+  "areas": [
+    {
+      "name": "Salon",
+      "id": "edxMqG7gfzGxibM1_XV_o"
+    },
+    {
+      "name": "Bahçe",
+      "id": "0lvThb2lJ9gyX4FXDAj8H"
+    }
+  ],
+  "tables": [
+    {
+      "id": "S6vmfF-ObfrOdtRG4B0ZT",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 1",
+      "isActive": false
+    },
+    {
+      "id": "E6WI0N18VGKSA6N2tx5zR",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 9",
+      "isActive": false
+    },
+    {
+      "id": "KbQQ048GMzUGS1PVfth2G",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 10",
+      "isActive": false
+    },
+    {
+      "id": "ygrfLyFjNjD62EOdn4cEV",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 2",
+      "isActive": false
+    },
+    {
+      "id": "9C3YEjRj3Wera-ffCfVD1",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 11",
+      "isActive": false
+    },
+    {
+      "id": "473TpO8rRpg7ywVLLip0Y",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 3",
+      "isActive": false
+    },
+    {
+      "id": "QVTLhkCfxDHVQSYGqmMXX",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 12",
+      "isActive": false
+    },
+    {
+      "id": "Wgqpe1Up_Ltn-gb1V9EEl",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 13",
+      "isActive": false
+    },
+    {
+      "id": "xD-Aj_okbvqjqN3LUo-Jn",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 7",
+      "isActive": false
+    },
+    {
+      "id": "RFccPxxMec62Dtu8QPOal",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 14",
+      "isActive": false
+    },
+    {
+      "id": "H1Xpmu_zNxi3MbLsdU9zv",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 8",
+      "isActive": false
+    },
+    {
+      "id": "-wbtK71d761tefTseo1CB",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 4",
+      "isActive": false
+    },
+    {
+      "id": "SPzXbNuNvsNGhuZN7rXFv",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 15",
+      "isActive": false
+    },
+    {
+      "id": "2rnZQRqSo7FkVjdTC83Xw",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 16",
+      "isActive": false
+    },
+    {
+      "id": "_JJFJtgJPwsqhoSgsbbkv",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 17",
+      "isActive": false
+    },
+    {
+      "id": "KW3n4WPXZZMefL-2IuAjA",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 18",
+      "isActive": false
+    },
+    {
+      "id": "gIku3Eb8UbQF_ghAFt96L",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 19",
+      "isActive": false
+    },
+    {
+      "id": "CF3Bw5EbCIprvcz8P7Zh6",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 5",
+      "isActive": false
+    },
+    {
+      "id": "gNqGi__W7todzkV89MuKJ",
+      "areaId": "0lvThb2lJ9gyX4FXDAj8H",
+      "name": "Masa 6",
+      "isActive": false
+    },
+    {
+      "id": "4t6hiDhbpN5Ut6qKV_lB5",
+      "areaId": "edxMqG7gfzGxibM1_XV_o",
+      "name": "Başak Masa <3",
+      "isActive": false
+    },
+    {
+      "id": "hmOIVk4qdJX_b_gwRxA9q",
+      "areaId": "edxMqG7gfzGxibM1_XV_o",
+      "name": "Keyoş Masa <3",
+      "isActive": false
+    }
+  ]
+}

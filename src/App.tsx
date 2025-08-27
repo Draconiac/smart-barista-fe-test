@@ -1,10 +1,11 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Home from "./pages/Home";
-import Orders from "./pages/Orders";
+import Orders from "./pages/Orders/Orders";
 import TableAndAreas from "./pages/TableAndAreas/TableAndAreas";
 import Product from "./pages/Products/Product";
 import Stock from "./pages/Products/Stock";
+import Menu from "./pages/Menu/Menu";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/siparis" element={<Orders />} />
             <Route path="/tanimlamalar/menuurunler" element={<Product />} />
             <Route path="/tanimlamalar/stok" element={<Stock />} />
+            <Route path="/islemler" element={<Menu />} />
           </Routes>
         </div>
       </div>
