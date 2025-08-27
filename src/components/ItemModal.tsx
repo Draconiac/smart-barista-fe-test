@@ -1,18 +1,27 @@
-import React, { Component } from "react";
+import React, { Component, Dispatch, SetStateAction } from "react";
 import Modal from "react-modal";
 import "./css/Modal.css";
 import ItemDetail from "../pages/Menu/ItemDetail";
 import { Product } from "../pages/Products/Product";
+import { SelectedItemsProps } from "../pages/Menu/Menu";
 
 Modal.setAppElement("#root");
 
 interface ItemModalProps {
   isOpen: boolean;
   onClose: () => void;
+  handleInputChange: (fieldName: "quantity", value: string) => void;
   selectedItem: Product | null;
+  handleSelectedItems: (item: Product) => void;
 }
 
-const ItemModal: React.FC<ItemModalProps> = ({ isOpen, onClose, selectedItem }) => {
+const ItemModal: React.FC<ItemModalProps> = ({
+  isOpen,
+  onClose,
+  selectedItem,
+  handleInputChange,
+  handleSelectedItems
+}) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -51,9 +60,8 @@ const ItemModal: React.FC<ItemModalProps> = ({ isOpen, onClose, selectedItem }) 
         <>
           <ItemDetail
             product={selectedItem}
-            onClick={() => {
-              window.alert("nınınım");
-            }}
+            handleInputChange={handleInputChange}
+            handleSelectedItems= {handleSelectedItems}
           />
           <button onClick={onClose} className="modal-close-button">
             x

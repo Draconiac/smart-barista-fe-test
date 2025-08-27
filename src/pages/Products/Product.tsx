@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import GenericTable, { Column, SpecialColumn } from "../../components/GenericTable";
-import { Category, MinUnits } from "../../enums/GeneralEnums";
 import api from "../../api";
-import ProductItems from "./ProductItems";
+import GenericTable, {
+  Column,
+  SpecialColumn,
+} from "../../components/GenericTable";
+import { Category, MinUnits } from "../../enums/GeneralEnums";
 import Ingredients from "./Ingredients";
-import { isVisible } from "@testing-library/user-event/dist/utils";
+import ProductItems from "./ProductItems";
 
 // API'den gelen verinin tipi
 export interface Product {
@@ -13,6 +15,7 @@ export interface Product {
   price: string;
   category: string;
   recipe_price: string;
+  quantity?: number; //sipariş verildiğinde setlenir sadece
 }
 
 const Product = () => {
@@ -44,7 +47,10 @@ const Product = () => {
   ]);
 
   // Input değişimlerini yöneten tek bir fonksiyon
-  const handleInputChange = (fieldName: "name" | "price" | "category" | "recipe_price", value: string) => {
+  const handleInputChange = (
+    fieldName: "name" | "price" | "category" | "recipe_price",
+    value: string
+  ) => {
     setFormData((prevData) => ({
       ...prevData,
       [fieldName]: value,
@@ -112,7 +118,6 @@ const Product = () => {
     onButtonClick: (product: Product) => {
       setVisible(true);
       setIngredientProduct(product);
-      
     },
   };
 
