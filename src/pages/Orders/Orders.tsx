@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import api from "../../api";
-import ItemModal from "../../components/ItemModal";
+import ItemModal from "../../components/X_ItemModal";
 import { AreaType } from "../TableAndAreas/TATabs";
 import { TableType } from "../TableAndAreas/TAView";
 import Item from "../Menu/Item";

@@ -32,6 +32,72 @@
       "unit_cost": "0.050",
       "unit": "LT",
       "id": "3"
+    },
+    {
+      "id": "4",
+      "name": "Un",
+      "amount": "15",
+      "unit": "KG",
+      "used_amount": "",
+      "cost": "2000",
+      "unit_cost": "0.133",
+      "buy_date": "2025-08-27",
+      "finish_date": ""
+    },
+    {
+      "id": "5",
+      "name": "Şeker",
+      "amount": "20",
+      "unit": "KG",
+      "used_amount": "",
+      "cost": "5000",
+      "unit_cost": "0.250",
+      "buy_date": "2025-08-27",
+      "finish_date": ""
+    },
+    {
+      "id": "6",
+      "name": "Yumurta",
+      "amount": "100",
+      "unit": "PIEACE",
+      "used_amount": "",
+      "cost": "1000",
+      "unit_cost": "10.000",
+      "buy_date": "2025-08-27",
+      "finish_date": ""
+    },
+    {
+      "id": "7",
+      "name": "Kakao",
+      "amount": "2",
+      "unit": "KG",
+      "used_amount": "",
+      "cost": "500",
+      "unit_cost": "0.250",
+      "buy_date": "2025-08-27",
+      "finish_date": ""
+    },
+    {
+      "id": "8",
+      "name": "Tereyağ",
+      "amount": "20",
+      "unit": "KG",
+      "used_amount": "",
+      "cost": "10000",
+      "unit_cost": "0.500",
+      "buy_date": "2025-08-27",
+      "finish_date": ""
+    },
+    {
+      "id": "dVNLvS9JGgixjCONEc_EP",
+      "name": "Damla Çikolata",
+      "amount": "3",
+      "unit": "KG",
+      "used_amount": "",
+      "cost": "2000",
+      "unit_cost": "0.667",
+      "buy_date": "2025-08-27",
+      "finish_date": ""
     }
   ],
   "products": [
@@ -39,38 +105,127 @@
       "name": "Espresso",
       "price": "80",
       "category": "DRINK",
-      "recipe_price": "",
+      "recipe_price": 13.5,
       "id": "1"
     },
     {
       "name": "Amerikano",
       "price": "155",
       "category": "DRINK",
-      "recipe_price": "",
+      "recipe_price": 20,
       "id": "2"
+    },
+    {
+      "id": "BE-etu3misGcgmDPDxuNL",
+      "name": "Cookie",
+      "price": "150",
+      "category": "FOOD",
+      "recipe_price": 19.247
+    },
+    {
+      "id": "YGJgUsR9AKA__ak8SCILD",
+      "name": "Latte",
+      "price": "127",
+      "category": "DRINK",
+      "recipe_price": 21.15
     }
   ],
   "ingredients": [
     {
-      "id": "4AfsCJSOX3CJeykGNlYTZ",
+      "id": "Pas4DYtUQp0v017djJxTy",
       "stockId": "1",
       "amount": "18",
+      "amountCost": "13.500",
       "unit": "gr",
       "productId": "1"
     },
     {
-      "id": "Enec5Abvyxta9f8v26sZm",
+      "id": "5bf6jT4gMoA2Eyhgc5u5C",
       "stockId": "1",
       "amount": "18",
+      "amountCost": "13.500",
       "unit": "gr",
       "productId": "2"
     },
     {
-      "id": "GQ0guAdbSnHYTOYgFSWvT",
+      "id": "P_yKnBF-012wZBiCoUeLA",
       "stockId": "3",
-      "amount": "150",
+      "amount": "130",
+      "amountCost": "6.500",
       "unit": "ml",
       "productId": "2"
+    },
+    {
+      "id": "YOAMbcO8OCL0t2VfUqE_i",
+      "stockId": "1",
+      "amount": "18",
+      "amountCost": "13.500",
+      "unit": "gr",
+      "productId": "YGJgUsR9AKA__ak8SCILD"
+    },
+    {
+      "id": "fGekc34-eXdoiGxEeFDTy",
+      "stockId": "2",
+      "amount": "50",
+      "amountCost": "3.150",
+      "unit": "ml",
+      "productId": "YGJgUsR9AKA__ak8SCILD"
+    },
+    {
+      "id": "HA3gpKk8wlZmr8SaB9-Vt",
+      "stockId": "3",
+      "amount": "90",
+      "amountCost": "4.500",
+      "unit": "ml",
+      "productId": "YGJgUsR9AKA__ak8SCILD"
+    },
+    {
+      "id": "NLHrs299oQDFVn-gbPZmV",
+      "stockId": "4",
+      "amount": "10",
+      "amountCost": "1.330",
+      "unit": "gr",
+      "productId": "BE-etu3misGcgmDPDxuNL"
+    },
+    {
+      "id": "x68s1Tbj4aWvApFeUzle8",
+      "stockId": "5",
+      "amount": "15",
+      "amountCost": "3.750",
+      "unit": "gr",
+      "productId": "BE-etu3misGcgmDPDxuNL"
+    },
+    {
+      "id": "raw-vj5bvc-bvW-zz1HOQ",
+      "stockId": "6",
+      "amount": "0.5",
+      "amountCost": "5.000",
+      "unit": "PIEACE",
+      "productId": "BE-etu3misGcgmDPDxuNL"
+    },
+    {
+      "id": "JMNwKJqALPR0FbGyg45Gm",
+      "stockId": "7",
+      "amount": "10",
+      "amountCost": "2.500",
+      "unit": "gr",
+      "productId": "BE-etu3misGcgmDPDxuNL"
+    },
+    {
+      "id": "usp0rl2xqwcqoG_IkeAlI",
+      "stockId": "8",
+      "amount": "10",
+      "amountCost": "5.000",
+      "unit": "gr",
+      "productId": "BE-etu3misGcgmDPDxuNL"
+    },
+    {
+      "id": "3JCuZX4e9c2SWZK9cVn7h",
+      "stockId": "dVNLvS9JGgixjCONEc_EP",
+      "amount": "2.5",
+      "amountCost": "1.667",
+      "unit": "gr",
+      "productId": "BE-etu3misGcgmDPDxuNL"
     }
   ],
   "areas": [

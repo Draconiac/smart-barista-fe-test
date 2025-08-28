@@ -1,8 +1,7 @@
 
 export enum Category{
     DRINK = "DRINK",
-    FOOD = "FOOD",
-    MinUnits = "MinUnits"
+    FOOD = "FOOD"
 }
 
 export enum Units{

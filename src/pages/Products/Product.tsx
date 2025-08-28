@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import api from "../../api";
-import GenericTable, {
-  Column,
-  SpecialColumn,
-} from "../../components/GenericTable";
+import GenericTable, { Column, SpecialColumn } from "../../components/GenericTable";
 import { Category, MinUnits } from "../../enums/GeneralEnums";
 import Ingredients from "./Ingredients";
 import ProductItems from "./ProductItems";
+import { nanoid } from "@reduxjs/toolkit";
 
 // API'den gelen verinin tipi
 export interface Product {
@@ -14,7 +12,7 @@ export interface Product {
   name: string;
   price: string;
   category: string;
-  recipe_price: string;
+  recipe_price: number;
   quantity?: number; //sipariş verildiğinde setlenir sadece
 }
 
@@ -25,7 +23,7 @@ const Product = () => {
     name: "",
     price: "",
     category: Category.DRINK,
-    recipe_price: "",
+    recipe_price: 0,
   });
   const [products, setProducts] = useState<Product[]>([]);
   const [isVisible, setVisible] = useState(false);
@@ -34,23 +32,12 @@ const Product = () => {
     name: "",
     price: "",
     category: Category.DRINK,
-    recipe_price: "",
+    recipe_price: 0,
   });
-  const [ingredients, setIngredients] = useState<Ingredients[]>([
-    {
-      id: "",
-      stockId: "",
-      amount: "",
-      unit: MinUnits.gr,
-      productId: formData.id,
-    },
-  ]);
+  const [ingredients, setIngredients] = useState<Ingredients[]>([]);
 
   // Input değişimlerini yöneten tek bir fonksiyon
-  const handleInputChange = (
-    fieldName: "name" | "price" | "category" | "recipe_price",
-    value: string
-  ) => {
+  const handleInputChange = (fieldName: "name" | "price" | "category" | "recipe_price", value: string) => {
     setFormData((prevData) => ({
       ...prevData,
       [fieldName]: value,
@@ -64,11 +51,12 @@ const Product = () => {
       name: "",
       price: "",
       category: Category.DRINK,
-      recipe_price: "",
+      recipe_price: 0,
     });
   };
 
   const saveProduct = () => {
+    formData.id = nanoid();
     api
       .post<Product>("products", formData)
       .then(() => {
@@ -148,6 +136,28 @@ const Product = () => {
       .catch((error) => console.log("Kayıt işlemi başarısız oldu" + error));
   };
 
+  const getIngredientsAndUpdatePrice = (productId: string) => {
+    // Ürüne ait tüm malzemeleri getir
+    api.get<Ingredients[]>(`/ingredients?productId=${productId}`)
+      .then((response) => {
+        const ingredientsData = response.data;
+        setIngredients(ingredientsData);
+
+        const newPrice = ingredientsData.reduce((total, i) => {
+          return total + Number(i.amountCost);
+        }, 0);
+
+        // Ürünün tarif fiyatını veritabanında güncelle
+        api.patch(`products/${productId}`, { recipe_price: newPrice })
+          .then(() => {
+            console.log("Ürün tarif fiyatı başarıyla güncellendi");
+            getProducts();
+          })
+          .catch(() => {});
+      })
+      .catch((error) => console.log("Malzemeler getirilirken hata oluştu: " + error));
+  };
+
   return (
     <div>
       <ProductItems formData={formData} onInputChange={handleInputChange} />
@@ -167,7 +177,7 @@ const Product = () => {
         isVisible={isVisible}
         product={ingredientProduct}
         ingredients={ingredients}
-        getIngredients={getIngredients}
+        getIngredientsAndUpdatePrice={getIngredientsAndUpdatePrice}
       />
     </div>
   );

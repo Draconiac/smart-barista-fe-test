@@ -9,7 +9,7 @@ interface ProductItemsProps {
     name: string;
     price: string;
     category: string;
-    recipe_price: string;
+    recipe_price: number;
   };
   onInputChange: (field: "name" | "price" | "category" | "recipe_price", value: string) => void;
 }

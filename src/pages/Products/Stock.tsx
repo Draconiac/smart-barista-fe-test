@@ -3,8 +3,9 @@ import StockItems from "./StockItems";
 import { Units } from "../../enums/GeneralEnums";
 import GenericTable, { Column } from "../../components/GenericTable";
 import api from "../../api";
+import { nanoid } from "@reduxjs/toolkit";
 
-interface Stock {
+export interface Stock {
   id: string;
   name: string;
   amount: string;
@@ -58,6 +59,7 @@ const Stock = () => {
   };
 
   const saveStock = () => {
+    formData.id = nanoid();
     api
       .post<Stock>("stocks", formData)
       .then(() => {

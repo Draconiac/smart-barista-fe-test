@@ -7,20 +7,22 @@ interface ItemDetailProps {
   product: Product;
   handleInputChange: (fieldName: "quantity", value: string) => void;
   handleSelectedItems: (item: Product) => void;
+  onClose: () => void;
 }
 
 const ItemDetail: React.FC<ItemDetailProps> = ({
   product,
   handleInputChange,
   handleSelectedItems,
+  onClose
 }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   const increase = () => {
     setCount(count + 1);
   };
   const decrease = () => {
-    setCount(count - 1);
+    setCount(count <= 0 ? 0 :count - 1);
   };
 
   return (
@@ -37,8 +39,8 @@ const ItemDetail: React.FC<ItemDetailProps> = ({
         onClick={() => {
           product.quantity = count;
           handleSelectedItems(product);
-          console.log(product);
-          setCount(0);
+          setCount(1);
+          onClose();
         }}
       >
         Ekle
