@@ -7,6 +7,9 @@ import ItemModal from "./ItemModal";
 import SelectedItem from "./SelectedItem";
 import "./style.css";
 import { nanoid } from "@reduxjs/toolkit";
+import { Stock } from "../Products/Stock";
+import Ingredients from "../Products/Ingredients";
+import { useStaticData } from "../DataContext";
 
 interface ItemDetailProps {
   quantity: string;
@@ -44,6 +47,7 @@ const Menu: React.FC<TableProps> = ({ closeMenuModal, tableId, orderedProducts, 
   const [drinkTotalCost, setDrinkTotalCost] = useState(0);
   const [foodTotalCost, setFoodTotalCost] = useState(0);
   const [emptyOrder, setEmptyOrder] = useState(true);
+  const { ingredients } = useStaticData();
 
   const openModal = (item: Product) => {
     setSelectedItem(item);
@@ -193,6 +197,7 @@ const Menu: React.FC<TableProps> = ({ closeMenuModal, tableId, orderedProducts, 
                 .then(() => {
                   closeMenuModal();
                   refreshOrders(tableId);
+                  updateStocks(activeOrder.orders);
                 })
                 .catch(() => {});
             })
@@ -200,6 +205,46 @@ const Menu: React.FC<TableProps> = ({ closeMenuModal, tableId, orderedProducts, 
         }
       })
       .catch();
+  };
+
+  const updateStocks = (products: Product[]) => {
+    const totalUsedAmountsMap = new Map();
+    products.forEach((product) => {
+      const quantity = product?.quantity ?? 1;
+
+      const ingredientList: Ingredients[] | [] = ingredients.filter(
+        (ingredient) => ingredient.productId === product.id
+      );
+
+      if (ingredientList.length > 0) {
+        ingredientList.forEach((ingredient) => {
+          const stockId = ingredient?.stockId;
+          const usedAmount = parseFloat(ingredient?.amount) * quantity;
+
+          if (totalUsedAmountsMap.has(stockId)) {
+            totalUsedAmountsMap.set(stockId, totalUsedAmountsMap.get(stockId) + usedAmount);
+          } else {
+            totalUsedAmountsMap.set(stockId, usedAmount);
+          }
+        });
+      }
+    });
+
+    //TO DO: stock u context in içine alıp sonrasında, aynı ürünün biten satırı varsa
+    // yenisine geç gibi bir işlem uygulanabilir
+    for (const [key, value] of totalUsedAmountsMap) {
+      api
+        .get<Stock>(`stocks/${key}`)
+        .then((response) => {
+          const stock = response.data;
+
+          if (stock) {
+            const newUsedAmount = parseFloat(stock?.used_amount ?? 0) + value;
+            api.patch(`stocks/${key}`, { used_amount: newUsedAmount }).then().catch();
+          }
+        })
+        .catch();
+    }
   };
 
   return (

@@ -54,10 +54,10 @@ const transformDataForBarChart = (tableOrders: TableOrders[]): BarChartData[] =>
 
 const transformDataForLineChart = (tableOrders: TableOrders[]): LineChartData[] => {
   const dailyTotals: { [key: string]: number } = {};
-  
+  debugger;
   tableOrders.forEach(tableOrder => {
     if (tableOrder.isPaid) {
-      const date = new Date(tableOrder.orderTime).toLocaleDateString("tr-TR");
+      const date = tableOrder.orderTime;
       dailyTotals[date] = (dailyTotals[date] || 0) + tableOrder.total;
     }
   });

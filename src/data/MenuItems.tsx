@@ -7,7 +7,7 @@ import discountIcon from "../assets/rosette-discount.svg"
 
 export const menuItems = [
   { label: "mainpage", path: "/", iconPath: homeIcon },
-  { label: "menu", path: "/menu", iconPath: menu },
+  // { label: "menu", path: "/menu", iconPath: menu },
   {
     label: "definitions",
     path: "/tanimlamalar",
@@ -28,11 +28,11 @@ export const menuItems = [
         path: "/tanimlamalar/stok",
         iconPath: homeIcon,
       },
-      {
-        label: "discounts",
-        path: "/tanimlamalar/indirimler",
-        iconPath: discountIcon,
-      },
+      // {
+      //   label: "discounts",
+      //   path: "/tanimlamalar/indirimler",
+      //   iconPath: discountIcon,
+      // },
     ],
   },
   {
@@ -41,9 +41,9 @@ export const menuItems = [
     iconPath: orderIcon,
   },
 
-  { label: "operations", path: "/islemler", iconPath: homeIcon },
-  { label: "reports", path: "/raporlar", iconPath: homeIcon },
-  { label: "users", path: "/kullanicilar", iconPath: homeIcon },
-  { label: "settings", path: "/ayarlar", iconPath: homeIcon },
-  { label: "logout", path: "/cikis", iconPath: homeIcon },
+  // { label: "operations", path: "/islemler", iconPath: homeIcon },
+  // { label: "reports", path: "/raporlar", iconPath: homeIcon },
+  // { label: "users", path: "/kullanicilar", iconPath: homeIcon },
+  // { label: "settings", path: "/ayarlar", iconPath: homeIcon },
+  // { label: "logout", path: "/cikis", iconPath: homeIcon },
 ];
