@@ -9,6 +9,7 @@ import { nanoid } from "@reduxjs/toolkit";
 interface Ingredients {
   id: string;
   stockId: string;
+  stockName?: string;
   amount: string;
   amountCost: number;
   unit: string;
@@ -104,7 +105,7 @@ const Ingredients: React.FC<IngredientsProps> = (props: IngredientsProps) => {
   }, [product]);
 
   const ingredientColumns: Column<Ingredients>[] = [
-    { key: "stockId", label: "Ürün" },
+    { key: "stockName", label: "Ürün" },
     { key: "amount", label: "Miktar" },
     { key: "amountCost", label: "Maliyet" },
   ];

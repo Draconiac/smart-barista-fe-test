@@ -1,40 +1,65 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import api from "../../api";
-import ItemModal from "../../components/X_ItemModal";
+import { TableOrders } from "../Menu/Menu";
+import { Product } from "../Products/Product";
 import { AreaType } from "../TableAndAreas/TATabs";
 import { TableType } from "../TableAndAreas/TAView";
-import Item from "../Menu/Item";
+import OrderModal from "./OrderModal";
 import Table from "./Table";
-import { Product } from "../Products/Product";
 
 Modal.setAppElement("#root");
 
 const Orders = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<SelectedItem | null>(null);
+  const [selectedItem, setSelectedItem] = useState<TableType | null>(null);
   const [tables, setTables] = useState<TableType[]>([]);
   const [areas, setAreas] = useState<AreaType[]>([]);
-  const [tableAndAreas, setTableAndAreas] = useState<[]>([]);
+  const [orderedProducts, setOrderedProducts] = useState<Product[]>([]);
 
-  type SelectedItem = {
-    product: Product;
-  };
-
-  const openModal = (item: SelectedItem) => {
+  const openModal = (item: TableType) => {
     setSelectedItem(item);
-    setModalIsOpen(true);
+    setOrderedProducts([]);
+    getTableOrders(item.id).then(()=>{ setModalIsOpen(true)});
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
     setSelectedItem(null);
+    setOrderedProducts([]);
   };
 
   useEffect(() => {
     getTables();
     getAreas();
   }, []);
+
+  const refreshOrders = (tableId: string) => {//seçilen masayı refresle
+    setTables(prevTables =>
+        prevTables.map(table =>
+          table.id === tableId ? { ...table, isActive: !table.isActive } : table
+        )
+      );
+  }
+
+  const getTableOrders = (tableId: string) => {
+    setOrderedProducts([]);
+    return api
+      .get<TableOrders[]>(`table_orders?tableId=${tableId}&isPaid=false`)
+      .then((response) => {
+        const resp = response.data[0];
+        if (resp && resp.orders) {
+          const orders = resp.orders;
+          setOrderedProducts(orders);
+        }else {
+          setOrderedProducts([]); 
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setOrderedProducts([]); 
+      });
+  };
 
   function sortTables(tables: TableType[]) {
     return tables.sort((a, b) => {
@@ -87,11 +112,16 @@ const Orders = () => {
               {tables ? (
                 tables.map((table) =>
                   table.areaId === area.id ? (
-                    <Table
-                      title={table.name}
-                      imageSrc={""}
-                      onClick={()=>{window.alert("Menüyü ac işlemler altına koydum geçiçi olarak")}}
-                    />
+                    <div key={table.id}>
+                      <Table
+                        occupied={table.isActive}
+                        title={table.name}
+                        imageSrc={""}
+                        onClick={() => {
+                          openModal(table);
+                        }}
+                      />
+                    </div>
                   ) : (
                     <></>
                   )
@@ -105,12 +135,12 @@ const Orders = () => {
       ) : (
         <></>
       )}
-
-      <ItemModal
+      <OrderModal
         isOpen={modalIsOpen}
         onClose={closeModal}
         selectedItem={selectedItem}
-        description={undefined}
+        orderedProducts={orderedProducts}
+        refreshOrders={refreshOrders}
       />
     </div>
   );

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import "./style.css";
-import { Product } from "../Products/Product";
+import { useEffect, useState } from "react";
 import api from "../../api";
+import { Category } from "../../enums/GeneralEnums";
+import { Product } from "../Products/Product";
 import Item from "./Item";
 import ItemModal from "./ItemModal";
-import ItemDetail from "./ItemDetail";
 import SelectedItem from "./SelectedItem";
-import { Category } from "../../enums/GeneralEnums";
+import "./style.css";
+import { nanoid } from "@reduxjs/toolkit";
 
 interface ItemDetailProps {
   quantity: string;
@@ -18,7 +18,24 @@ export interface SelectedItemsProps {
   quantity: number;
 }
 
-const Menu = () => {
+interface TableProps {
+  tableId: string;
+  orderedProducts: Product[];
+  refreshOrders: (tableId: string) => void;
+  closeMenuModal: () => void;
+}
+
+export interface TableOrders {
+  id: string;
+  tableId: string;
+  orders: Product[];
+  total: number;
+  orderTime: string;
+  isPaid: boolean;
+  paidTime: string;
+}
+
+const Menu: React.FC<TableProps> = ({ closeMenuModal, tableId, orderedProducts, refreshOrders }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Product | null>(null);
@@ -26,6 +43,7 @@ const Menu = () => {
   const [selectedItems, setSelectedItems] = useState<Product[]>([]);
   const [drinkTotalCost, setDrinkTotalCost] = useState(0);
   const [foodTotalCost, setFoodTotalCost] = useState(0);
+  const [emptyOrder, setEmptyOrder] = useState(true);
 
   const openModal = (item: Product) => {
     setSelectedItem(item);
@@ -38,8 +56,13 @@ const Menu = () => {
   };
 
   useEffect(() => {
+    setSelectedItems(orderedProducts);
     getProducts();
   }, []);
+
+  useEffect(() => {
+    selectedItems.length > 0 ? setEmptyOrder(false) : setEmptyOrder(true);
+  }, [selectedItems]);
 
   const getProducts = () => {
     api
@@ -99,6 +122,86 @@ const Menu = () => {
     setSelectedItems(selectedItems.filter((s) => s.id !== item.id));
   };
 
+  const orderCreated = () => {
+    api
+      .patch(`tables/${tableId}`, { isActive: true })
+      .then(() => {
+        closeMenuModal();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const createOrder = () => {
+    const date = new Date().toLocaleDateString("tr-TR") + "-" + new Date().toLocaleTimeString("tr-TR");
+    const tableOrders: TableOrders = {
+      id: nanoid(),
+      tableId: tableId,
+      orders: selectedItems,
+      total: drinkTotalCost + foodTotalCost,
+      orderTime: date,
+      isPaid: false,
+      paidTime: "",
+    };
+
+    api.get<TableOrders[]>(`table_orders?tableId=${tableId}&isPaid=false`).then((response) => {
+      const activeOrder = response.data[0];
+      if (activeOrder) {
+        const updatedOrders = selectedItems;
+        const newTotal = drinkTotalCost + foodTotalCost;
+
+        api
+          .patch(`table_orders/${activeOrder.id}`, {
+            orders: updatedOrders,
+            total: newTotal,
+          })
+          .then(() => {
+            closeMenuModal();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        //ilk sipariş
+        api
+          .post<TableOrders>("/table_orders", tableOrders)
+          .then(() => {
+            orderCreated();
+            refreshOrders(tableId);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
+  };
+
+  const getPayment = () => {
+    const date = new Date().toLocaleDateString("tr-TR") + "-" + new Date().toLocaleTimeString("tr-TR");
+
+    api
+      .get<TableOrders[]>(`table_orders?tableId=${tableId}&isPaid=false`)
+      .then((response) => {
+        const activeOrder = response.data[0];
+        if (activeOrder) {
+          api
+            .patch(`table_orders/${activeOrder.id}`, { paidTime: date, isPaid: true })
+            .then(() => {
+              api
+                .patch(`tables/${tableId}`, { isActive: false })
+                .then(() => {
+                  closeMenuModal();
+                  refreshOrders(tableId);
+                })
+                .catch(() => {});
+            })
+            .catch(() => {});
+        }
+      })
+      .catch();
+  };
+
   return (
     <div className="menu-container">
       <div className="menu-container-left">
@@ -106,13 +209,15 @@ const Menu = () => {
         <hr></hr>
         {products ? (
           products.map((product) => (
-            <Item
-              title={product.name}
-              product={product}
-              onClick={() => {
-                openModal(product);
-              }}
-            />
+            <div key={product.id}>
+              <Item
+                title={product.name}
+                product={product}
+                onClick={() => {
+                  openModal(product);
+                }}
+              />
+            </div>
           ))
         ) : (
           <></>
@@ -167,6 +272,12 @@ const Menu = () => {
             <h5>Toplam</h5>
             <h5>{drinkTotalCost + foodTotalCost} TL</h5>
           </div>
+          <button disabled={emptyOrder} className="order-button" onClick={() => createOrder()}>
+            Siparişi {orderedProducts.length === 0 ? "Oluştur" : "Ekle"}
+          </button>
+          <button disabled={emptyOrder} className="payment-button" onClick={() => getPayment()}>
+            Ödeme Al{" "}
+          </button>
         </div>
       </div>
       <ItemModal

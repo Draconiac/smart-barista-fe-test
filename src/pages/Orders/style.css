@@ -1,6 +1,9 @@
+:root{
+  --background-color:rgb(209, 244, 187);
+  /* --occupied-color:rgb(234, 124, 124); */
+}
 
-
- .table-items-container {
+.table-items-container {
   display: flex;
   flex-wrap: wrap; /* Eğer sığmazsa alt satıra geçmesini sağlar */
   gap: 10px; /* Elemanlar arasında boşluk bırakır */

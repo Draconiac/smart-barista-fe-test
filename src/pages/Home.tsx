@@ -1,15 +1,12 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import Dashboard from "./Dashboard/Dashboard";
 
-export default function Home() {
-  const { t: tMain } = useTranslation("mainpage");
-  //const { t: tLogin } = useTranslation("login");
-
+const Home: React.FC = () => {
   return (
     <div>
-      <h2>🏠 Home Page</h2>
-
-      <h2>{tMain("welcome", { name: "LO LO LO" })}</h2>
+      <Dashboard />
     </div>
   );
-}
+};
+
+export default Home;

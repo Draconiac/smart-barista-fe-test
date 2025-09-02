@@ -93,7 +93,7 @@ const IngredientsItems: React.FC<IngredientsItemsProps> = ({ formData, product, 
             onInputChange("amount", e.target.value);
           }}
         />
-        <label>{amountCost}</label>
+        <label>{isNaN(amountCost)  ? 0 : amountCost}</label>
         <label>TL</label>
       </div>
     </div>

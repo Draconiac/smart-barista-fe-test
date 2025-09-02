@@ -128,6 +128,13 @@
       "price": "127",
       "category": "DRINK",
       "recipe_price": 21.15
+    },
+    {
+      "id": "Tlm1I73IyYFBzvtHNeb_w",
+      "name": "Kek",
+      "price": "180",
+      "category": "FOOD",
+      "recipe_price": 0
     }
   ],
   "ingredients": [
@@ -364,6 +371,412 @@
       "areaId": "edxMqG7gfzGxibM1_XV_o",
       "name": "Keyoş Masa <3",
       "isActive": false
+    }
+  ],
+  "table_orders": [
+    {
+      "id": "28L09EaZY7intyFcI51bP",
+      "tableId": "S6vmfF-ObfrOdtRG4B0ZT",
+      "orders": [
+        {
+          "name": "Espresso",
+          "price": "80",
+          "category": "DRINK",
+          "recipe_price": 13.5,
+          "id": "1",
+          "quantity": 4
+        },
+        {
+          "id": "BE-etu3misGcgmDPDxuNL",
+          "name": "Cookie",
+          "price": "150",
+          "category": "FOOD",
+          "recipe_price": 19.247,
+          "quantity": 4
+        },
+        {
+          "id": "YGJgUsR9AKA__ak8SCILD",
+          "name": "Latte",
+          "price": "127",
+          "category": "DRINK",
+          "recipe_price": 21.15,
+          "quantity": 1
+        }
+      ],
+      "total": 1047,
+      "orderTime": "Mon Sep 01 2025 14:09:11 GMT+0300 (GMT+03:00)",
+      "isPaid": true,
+      "paidTime": "01.09.2025-15:22:43"
+    },
+    {
+      "id": "bL5KWIWWJMO23YxWH_s13",
+      "tableId": "KW3n4WPXZZMefL-2IuAjA",
+      "orders": [
+        {
+          "id": "BE-etu3misGcgmDPDxuNL",
+          "name": "Cookie",
+          "price": "150",
+          "category": "FOOD",
+          "recipe_price": 19.247,
+          "quantity": 1
+        }
+      ],
+      "total": 150,
+      "orderTime": "01.09.2025-15:34:18",
+      "isPaid": true,
+      "paidTime": "01.09.2025-15:35:02"
+    },
+    {
+      "id": "xnz0O70kFtAuWCwkz8KOq",
+      "tableId": "S6vmfF-ObfrOdtRG4B0ZT",
+      "orders": [
+        {
+          "name": "Espresso",
+          "price": "80",
+          "category": "DRINK",
+          "recipe_price": 13.5,
+          "id": "1",
+          "quantity": 1
+        }
+      ],
+      "total": 80,
+      "orderTime": "01.09.2025-15:40:13",
+      "isPaid": true,
+      "paidTime": "01.09.2025-15:40:55"
+    },
+    {
+      "id": "msmbnVV8bSHPM2rfEmuj7",
+      "tableId": "S6vmfF-ObfrOdtRG4B0ZT",
+      "orders": [
+        {
+          "name": "Amerikano",
+          "price": "155",
+          "category": "DRINK",
+          "recipe_price": 20,
+          "id": "2",
+          "quantity": 1
+        }
+      ],
+      "total": 155,
+      "orderTime": "01.09.2025-15:42:28",
+      "isPaid": true,
+      "paidTime": "01.09.2025-15:46:00"
+    },
+    {
+      "id": "Ay-tjrrbpebcnHV3eliB1",
+      "tableId": "Wgqpe1Up_Ltn-gb1V9EEl",
+      "orders": [
+        {
+          "name": "Espresso",
+          "price": "80",
+          "category": "DRINK",
+          "recipe_price": 13.5,
+          "id": "1",
+          "quantity": 1
+        }
+      ],
+      "total": 80,
+      "orderTime": "01.09.2025-15:52:20",
+      "isPaid": true,
+      "paidTime": "01.09.2025-15:53:55"
+    },
+    {
+      "id": "f6GSDKiu6ZkEO9MnNERoz",
+      "tableId": "Wgqpe1Up_Ltn-gb1V9EEl",
+      "orders": [
+        {
+          "name": "Amerikano",
+          "price": "155",
+          "category": "DRINK",
+          "recipe_price": 20,
+          "id": "2",
+          "quantity": 1
+        }
+      ],
+      "total": 155,
+      "orderTime": "01.09.2025-15:54:39",
+      "isPaid": true,
+      "paidTime": "01.09.2025-16:01:39"
+    },
+    {
+      "id": "iKLqEtzt9e0NqIGdL93dO",
+      "tableId": "Wgqpe1Up_Ltn-gb1V9EEl",
+      "orders": [
+        {
+          "name": "Espresso",
+          "price": "80",
+          "category": "DRINK",
+          "recipe_price": 13.5,
+          "id": "1",
+          "quantity": 1
+        }
+      ],
+      "total": 80,
+      "orderTime": "01.09.2025-16:01:53",
+      "isPaid": true,
+      "paidTime": "01.09.2025-16:01:58"
+    },
+    {
+      "id": "hbPEgaJTCgqiq_1bNhMIA",
+      "tableId": "Wgqpe1Up_Ltn-gb1V9EEl",
+      "orders": [
+        {
+          "name": "Espresso",
+          "price": "80",
+          "category": "DRINK",
+          "recipe_price": 13.5,
+          "id": "1",
+          "quantity": 1
+        },
+        {
+          "name": "Amerikano",
+          "price": "155",
+          "category": "DRINK",
+          "recipe_price": 20,
+          "id": "2",
+          "quantity": 1
+        },
+        {
+          "id": "YGJgUsR9AKA__ak8SCILD",
+          "name": "Latte",
+          "price": "127",
+          "category": "DRINK",
+          "recipe_price": 21.15,
+          "quantity": 1
+        }
+      ],
+      "total": 362,
+      "orderTime": "01.09.2025-16:12:11",
+      "isPaid": true,
+      "paidTime": "01.09.2025-16:12:39"
+    },
+    {
+      "id": "FbnXmS34HutoqoYEyz-H0",
+      "tableId": "Wgqpe1Up_Ltn-gb1V9EEl",
+      "orders": [
+        {
+          "name": "Espresso",
+          "price": "80",
+          "category": "DRINK",
+          "recipe_price": 13.5,
+          "id": "1",
+          "quantity": 1
+        }
+      ],
+      "total": 80,
+      "orderTime": "01.09.2025-16:13:19",
+      "isPaid": true,
+      "paidTime": "01.09.2025-16:13:49"
+    },
+    {
+      "id": "bEiroIzhkfy9iHEL7g_M2",
+      "tableId": "Wgqpe1Up_Ltn-gb1V9EEl",
+      "orders": [
+        {
+          "name": "Espresso",
+          "price": "80",
+          "category": "DRINK",
+          "recipe_price": 13.5,
+          "id": "1",
+          "quantity": 1
+        }
+      ],
+      "total": 80,
+      "orderTime": "01.09.2025-16:14:02",
+      "isPaid": true,
+      "paidTime": "01.09.2025-16:14:07"
+    },
+    {
+      "id": "2z7oWwTVszH0uhV7ZN0j2",
+      "tableId": "KW3n4WPXZZMefL-2IuAjA",
+      "orders": [
+        {
+          "name": "Amerikano",
+          "price": "155",
+          "category": "DRINK",
+          "recipe_price": 20,
+          "id": "2",
+          "quantity": 1
+        }
+      ],
+      "total": 155,
+      "orderTime": "01.09.2025-16:14:40",
+      "isPaid": true,
+      "paidTime": "01.09.2025-16:15:00"
+    },
+    {
+      "id": "W0uCzqBnAywpv714MaGda",
+      "tableId": "E6WI0N18VGKSA6N2tx5zR",
+      "orders": [
+        {
+          "id": "YGJgUsR9AKA__ak8SCILD",
+          "name": "Latte",
+          "price": "127",
+          "category": "DRINK",
+          "recipe_price": 21.15,
+          "quantity": 1
+        }
+      ],
+      "total": 127,
+      "orderTime": "01.09.2025-16:14:46",
+      "isPaid": true,
+      "paidTime": "01.09.2025-16:14:57"
+    },
+    {
+      "id": "hWQ5Qn6rT2i0eQjkxT22C",
+      "tableId": "9C3YEjRj3Wera-ffCfVD1",
+      "orders": [
+        {
+          "id": "BE-etu3misGcgmDPDxuNL",
+          "name": "Cookie",
+          "price": "150",
+          "category": "FOOD",
+          "recipe_price": 19.247,
+          "quantity": 1
+        }
+      ],
+      "total": 150,
+      "orderTime": "01.09.2025-16:14:53",
+      "isPaid": true,
+      "paidTime": "01.09.2025-16:15:04"
+    },
+    {
+      "id": "2N0D09CZj5fthN9apnsXK",
+      "tableId": "KbQQ048GMzUGS1PVfth2G",
+      "orders": [
+        {
+          "name": "Espresso",
+          "price": "80",
+          "category": "DRINK",
+          "recipe_price": 13.5,
+          "id": "1",
+          "quantity": 1
+        },
+        {
+          "name": "Amerikano",
+          "price": "155",
+          "category": "DRINK",
+          "recipe_price": 20,
+          "id": "2",
+          "quantity": 1
+        },
+        {
+          "id": "BE-etu3misGcgmDPDxuNL",
+          "name": "Cookie",
+          "price": "150",
+          "category": "FOOD",
+          "recipe_price": 19.247,
+          "quantity": 4
+        }
+      ],
+      "total": 835,
+      "orderTime": "01.09.2025-16:31:18",
+      "isPaid": true,
+      "paidTime": "01.09.2025-16:32:43"
+    },
+    {
+      "id": "tT4ONg31khTGrkVspvkQj",
+      "tableId": "SPzXbNuNvsNGhuZN7rXFv",
+      "orders": [
+        {
+          "id": "BE-etu3misGcgmDPDxuNL",
+          "name": "Cookie",
+          "price": "150",
+          "category": "FOOD",
+          "recipe_price": 19.247,
+          "quantity": 1
+        },
+        {
+          "name": "Espresso",
+          "price": "80",
+          "category": "DRINK",
+          "recipe_price": 13.5,
+          "id": "1",
+          "quantity": 1
+        },
+        {
+          "id": "YGJgUsR9AKA__ak8SCILD",
+          "name": "Latte",
+          "price": "127",
+          "category": "DRINK",
+          "recipe_price": 21.15,
+          "quantity": 1
+        }
+      ],
+      "total": 357,
+      "orderTime": "01.09.2025-16:32:13",
+      "isPaid": true,
+      "paidTime": "01.09.2025-16:32:54"
+    },
+    {
+      "id": "DmoahEG0dQmP14TFT_XXn",
+      "tableId": "H1Xpmu_zNxi3MbLsdU9zv",
+      "orders": [
+        {
+          "name": "Amerikano",
+          "price": "155",
+          "category": "DRINK",
+          "recipe_price": 20,
+          "id": "2",
+          "quantity": 4
+        },
+        {
+          "id": "BE-etu3misGcgmDPDxuNL",
+          "name": "Cookie",
+          "price": "150",
+          "category": "FOOD",
+          "recipe_price": 19.247,
+          "quantity": 7
+        }
+      ],
+      "total": 1670,
+      "orderTime": "02.09.2025-09:35:34",
+      "isPaid": true,
+      "paidTime": "02.09.2025-09:35:38"
+    },
+    {
+      "id": "zkIj0zn9VQdwt5opNHvba",
+      "tableId": "9C3YEjRj3Wera-ffCfVD1",
+      "orders": [
+        {
+          "id": "Tlm1I73IyYFBzvtHNeb_w",
+          "name": "Kek",
+          "price": "180",
+          "category": "FOOD",
+          "recipe_price": 0,
+          "quantity": 3
+        }
+      ],
+      "total": 540,
+      "orderTime": "02.09.2025-09:37:40",
+      "isPaid": true,
+      "paidTime": "02.09.2025-09:37:43"
+    },
+    {
+      "id": "IEDIAbWwr2-JS1sMkkrmt",
+      "tableId": "4t6hiDhbpN5Ut6qKV_lB5",
+      "orders": [
+        {
+          "name": "Amerikano",
+          "price": "155",
+          "category": "DRINK",
+          "recipe_price": 20,
+          "id": "2",
+          "quantity": 2
+        },
+        {
+          "id": "BE-etu3misGcgmDPDxuNL",
+          "name": "Cookie",
+          "price": "150",
+          "category": "FOOD",
+          "recipe_price": 19.247,
+          "quantity": 3
+        }
+      ],
+      "total": 760,
+      "orderTime": "02.09.2025-10:38:21",
+      "isPaid": true,
+      "paidTime": "02.09.2025-10:38:25"
     }
   ]
 }

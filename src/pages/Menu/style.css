@@ -1,7 +1,7 @@
 .menu-container {
   display: flex;        /* Flexbox düzenini etkinleştirir */
-  width: 90%;          /* Genişliğini ana konteynerına göre ayarlar */
-  height: 90vh;        /* Ekranın tamamını kaplamasını sağlar */
+  width: 100%;          /* Genişliğini ana konteynerına göre ayarlar */
+  height: 95%;        /* Ekranın tamamını kaplamasını sağlar */
   border: 1px solid #ccc; /* Görmek için ana konteynıra kenarlık ekleyebilirsin */
   flex-wrap: wrap; /* Eğer sığmazsa alt satıra geçmesini sağlar */
   justify-content: flex-start; /* Elemanları soldan hizalar */
@@ -82,10 +82,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -130%);
-  width: 30vw;    /* genişlik: ekranın %30'u */
-  max-width: 500px; /* maksimum genişlik */
-  height: 65vh;   /* yüksekliğin %65'ı */
-  max-height: 600px; /* maksimum yükseklik */
+  
   background: white;
   padding: 20px;
   border-radius: 8px;
@@ -161,6 +158,24 @@
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
+}
+
+.order-button,
+.payment-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  
+}
+
+.order-button{
+  background-color: rgb(112, 198, 26);
+}
+
+.payment-button{
+background-color: rgb(207, 167, 22);
 }
 
 .edit-button {

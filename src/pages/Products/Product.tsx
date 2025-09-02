@@ -5,6 +5,7 @@ import { Category, MinUnits } from "../../enums/GeneralEnums";
 import Ingredients from "./Ingredients";
 import ProductItems from "./ProductItems";
 import { nanoid } from "@reduxjs/toolkit";
+import { Stock } from "./Stock";
 
 // API'den gelen verinin tipi
 export interface Product {
@@ -26,6 +27,7 @@ const Product = () => {
     recipe_price: 0,
   });
   const [products, setProducts] = useState<Product[]>([]);
+  const [stocks, setStocks] = useState<Stock[]>([]);
   const [isVisible, setVisible] = useState(false);
   const [ingredientProduct, setIngredientProduct] = useState<Product>({
     id: "",
@@ -85,8 +87,18 @@ const Product = () => {
       .catch((error) => console.log("Kayıt işlemi başarısız oldu" + error));
   };
 
+  const getStocks = () => {
+    api
+      .get<Stock[]>("stocks")
+      .then((response) => {
+        setStocks(response.data);
+      })
+      .catch((error) => console.log("Kayıt işlemi başarısız oldu" + error));
+  };
+
   useEffect(() => {
     getProducts();
+    getStocks();
   }, []);
 
   useEffect(() => {
@@ -131,7 +143,13 @@ const Product = () => {
     api
       .get<Ingredients[]>(`ingredients?productId=${ingredientProduct.id}`)
       .then((response) => {
-        setIngredients(response.data);
+        const ingredientsData = response.data;
+        
+        ingredientsData.forEach((data) => {
+          let stock = stocks.filter(stock => stock.id === data.stockId);
+          data.stockName = stock[0]?.name;
+        })
+        setIngredients(ingredientsData);
       })
       .catch((error) => console.log("Kayıt işlemi başarısız oldu" + error));
   };
@@ -141,6 +159,11 @@ const Product = () => {
     api.get<Ingredients[]>(`/ingredients?productId=${productId}`)
       .then((response) => {
         const ingredientsData = response.data;
+        
+        ingredientsData.forEach((data) => {
+          let stock = stocks.filter(stock => stock.id === data.stockId);
+          data.stockName = stock[0].name;
+        })
         setIngredients(ingredientsData);
 
         const newPrice = ingredientsData.reduce((total, i) => {
