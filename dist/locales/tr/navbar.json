@@ -1,0 +1,15 @@
+{
+  "mainpage": "Ana Sayfa",
+  "menu": "Menü",
+  "definitions": "Tanımlamalar",
+  "tableandareas": "Masa/Bölgeler",
+  "menuandproducts": "Menü/Ürünler",
+  "discounts": "İndirimler",
+  "stocks": "Stok",
+  "orders": "Sipariş",
+  "operations": "İşlemler",
+  "reports": "Raporlar",
+  "users": "Kullanıcılar",
+  "settings": "Ayarlar",
+  "logout": "Çıkış Yap"
+}

@@ -1,0 +1,10 @@
+{
+  "addNewArea": "Yeni Bölge Ekle",
+  "editArea": "Bölge Düzenle",
+  "addNewTable": "Yeni Masa Ekle",
+  "addNewTableBulk": "Toplu Masa Ekle",
+  "addNewTableBulkSize" : "Masa Sayısı",
+  "newTable": "Yeni Masa",
+  "tableName": "Masa Adı",
+  "areaName": "Bölge Adı"
+}

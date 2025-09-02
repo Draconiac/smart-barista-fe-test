@@ -1,7 +1,6 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
-import "./style.css";
+import React, { useState } from "react";
 import { Product } from "../Products/Product";
-import { SelectedItemsProps } from "./Menu";
+import "./style.css";
 
 interface ItemDetailProps {
   product: Product;

@@ -1,0 +1,11 @@
+{
+  "blabla" : "blablatrtrtrtrtr",
+  "form": {
+    "email": "E-Posta",
+    "password": "Şifre",
+    "button": {
+      "login": "Giriş Yap",
+      "forgot": "Şifremi Unuttum"
+    }
+  }
+}
